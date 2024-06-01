@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Convidados</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F6E1E0;
+            color:#412622
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #412622;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Adjust based on your layout needs */
+            margin-bottom: 20px;
+        }
+        header img{
+            width: 250px;
+            height: 250px;
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+            border-bottom: 1px solid #412622;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #412622;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #F2C3BF;
+            color: #412622;
+            cursor: pointer;
+        }
+
+        button.remove {
+            background-color: #FF949F;
+        }
+
+        button:hover {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" alt="Logo">
+    </header>
+    <div class="container">
+        <h2>Lista de Convidados</h2>
+        <ul id="lista"></ul>
+        <input type="text" id="i_convidado" placeholder="Nome do convidado">
+        <button onclick="adiciona_convidado()">Adicionar</button>
+        <button class="remove" onclick="remove_convidado()">Remover</button>
+    </div>
+
+    <script>
+        let convidados = [];
+        let ul = document.getElementById("lista");
+
+        function adiciona_convidado() {
+            let convidado = document.getElementById("i_convidado").value;
+            if (convidado.trim() !== "") {
+                convidados.push(convidado.trim());
+                document.getElementById("i_convidado").value = "";
+                desenha_lista();
+            }
+        }
+
+        function remove_convidado() {
+            convidados.pop();
+            desenha_lista();
+        }
+
+        function desenha_lista() {
+            ul.innerHTML = "";
+            for (let i = 0; i < convidados.length; i++) {
+                ul.innerHTML += `<li>${convidados[i]}</li>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
